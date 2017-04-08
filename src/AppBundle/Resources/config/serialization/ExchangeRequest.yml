@@ -1,0 +1,17 @@
+AppBundle\Entity\ExchangeRequest:
+    attributes:
+        currencyFromId:
+            groups: ['create']
+            type: integer
+            required: true
+            description: Source corrency identifier
+        currencyToId:
+            groups: ['create']
+            type: integer
+            required: true
+            description: Target corrency identifier
+        value:
+            groups: ['create']
+            type: float
+            required: true
+            description: Amount
