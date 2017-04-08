@@ -1,0 +1,21 @@
+AppBundle\Entity\Currency:
+    attributes:
+        id:
+            groups: ['read']
+            type: integer
+            description: Identifier
+        code:
+            groups: ['read', 'create']
+            type: string
+            required: true
+            description: Code
+        country:
+            groups: ['read', 'create']
+            type: string
+            required: true
+            description: Related country
+        value:
+            groups: ['read', 'create']
+            type: float
+            required: true
+            description: Currency weight
