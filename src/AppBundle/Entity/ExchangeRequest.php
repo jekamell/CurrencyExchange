@@ -1,8 +1,8 @@
 <?php
-declare(strict_types=1);
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Mell\Bundle\SimpleDtoBundle\Model\DtoSerializableInterface;
 
 /**
@@ -11,16 +11,28 @@ use Mell\Bundle\SimpleDtoBundle\Model\DtoSerializableInterface;
 class ExchangeRequest implements DtoSerializableInterface
 {
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("integer")
+     * @Assert\GreaterThan(0)
+     *
      * @var int
      */
     private $currencyFromId;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("integer")
+     * @Assert\GreaterThan(0)
+     *
      * @var int
      */
     private $currencyToId;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("float")
+     * @Assert\GreaterThan(0)
+     *
      * @var float
      */
     private $amount;
@@ -28,7 +40,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @return int
      */
-    public function getCurrencyFromId(): ?int
+    public function getCurrencyFromId()
     {
         return $this->currencyFromId;
     }
@@ -36,7 +48,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @param int $currencyFromId
      */
-    public function setCurrencyFromId(?int $currencyFromId): void
+    public function setCurrencyFromId($currencyFromId)
     {
         $this->currencyFromId = $currencyFromId;
     }
@@ -44,7 +56,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @return int
      */
-    public function getCurrencyToId(): ?int
+    public function getCurrencyToId()
     {
         return $this->currencyToId;
     }
@@ -52,7 +64,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @param int $currencyToId
      */
-    public function setCurrencyToId(?int $currencyToId): void
+    public function setCurrencyToId($currencyToId)
     {
         $this->currencyToId = $currencyToId;
     }
@@ -60,7 +72,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @return float
      */
-    public function getAmount(): ?float
+    public function getAmount()
     {
         return $this->amount;
     }
@@ -68,7 +80,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @param float $amount
      */
-    public function setAmount(?float $amount): void
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
