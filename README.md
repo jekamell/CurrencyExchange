@@ -3,7 +3,7 @@ QA Test
 
 # 0. Provision system locally
 ---
-- Install php 7.1. Make sure php related packages exists in your system (php7.1-bcmath, php7.1-cli, php7.1-common, php7.1-json, php7.1-mbstring, php7.1-opcache, php7.1-readline, php7.1-sqlite3, php7.1-xml)
+- [Install php 7.1](http://php.net/manual/en/install.php). Make sure php related packages exists in your system (php7.1-bcmath, php7.1-cli, php7.1-common, php7.1-json, php7.1-mbstring, php7.1-opcache, php7.1-readline, php7.1-sqlite3, php7.1-xml)
 - [Install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx), Install pgroject dependencies (`composer install` insede project root)
 - [Execute database migrations](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
 - [Run php build in web server](http://symfony.com/doc/current/setup/built_in_web_server.html)
