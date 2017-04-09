@@ -7,6 +7,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Currency;
 use Mell\Bundle\SimpleDtoBundle\Controller\AbstractController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -45,7 +46,8 @@ class CurrencyController extends AbstractController
      *     description="Create resource",
      *     input={ "class"="AppBundle\Entity\Currency", "groups"="create"},
      *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
-     * )
+     * ),
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request): Response
     {
@@ -71,7 +73,8 @@ class CurrencyController extends AbstractController
      *     section="Currency",
      *     description="Read resource",
      *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
-     * )
+     * ),
+     * @Security("has_role('ROLE_USER')")
      */
     public function readAction(Currency $currency): Response
     {
@@ -91,7 +94,8 @@ class CurrencyController extends AbstractController
      *     resource=true,
      *     section="Currency",
      *     description="Delete resource"
-     * )
+     * ),
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Currency $currency): Response
     {
@@ -114,7 +118,8 @@ class CurrencyController extends AbstractController
      *     section="Currency",
      *     description="List resources",
      *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
-     * )
+     * ),
+     * @Security("has_role('ROLE_USER')")
      */
     public function listAction(): Response
     {
