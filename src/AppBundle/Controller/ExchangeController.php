@@ -8,6 +8,7 @@ use AppBundle\Entity\Currency;
 use AppBundle\Entity\ExchangeRequest;
 use AppBundle\Entity\ExchangeResult;
 use Mell\Bundle\SimpleDtoBundle\Controller\AbstractController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,6 +29,16 @@ class ExchangeController extends AbstractController
      * @Method({"POST"})
      * @param Request $request
      * @return Response
+     * @ApiDoc(
+     *     statusCodes={
+     *         200="Return when operation success",
+     *         403="Return when issuer had no permission for operation"
+     *     },
+     *     resource=true,
+     *     section="Exchange",
+     *     description="Exchange",
+     *     input={ "class"="AppBundle\Entity\ExchangeRequest", "groups"="create" }
+     * )
      */
     public function indexAction(Request $request): Response
     {
