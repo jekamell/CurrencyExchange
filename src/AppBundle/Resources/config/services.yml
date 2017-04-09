@@ -1,3 +1,8 @@
 services:
     app.exchange_calculator:
         class: AppBundle\Service\ExchangeCalculator
+    app.security.api_key_provider:
+        class: AppBundle\Security\ApiKeyUserProvider
+    apikey_authenticator:
+        class: AppBundle\Security\ApiKeyAuthenticator
+        public: false
