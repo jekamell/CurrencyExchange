@@ -30,7 +30,7 @@ class ExchangeRequest implements DtoSerializableInterface
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Type("float")
+     * @Assert\Type("numeric")
      * @Assert\GreaterThan(0)
      *
      * @var float
@@ -80,7 +80,7 @@ class ExchangeRequest implements DtoSerializableInterface
     /**
      * @param float $amount
      */
-    public function setAmount($amount)
+    public function setAmount(float $amount)
     {
         $this->amount = $amount;
     }
