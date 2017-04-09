@@ -10,7 +10,7 @@ AppBundle\Entity\ExchangeRequest:
             type: integer
             required: true
             description: Target corrency identifier
-        value:
+        amount:
             groups: ['create']
             type: float
             required: true
