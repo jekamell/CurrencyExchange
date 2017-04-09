@@ -21,14 +21,20 @@ monolog:
         console:
             type:   console
             channels: [!event, !doctrine]
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type:   firephp
-        #    level:  info
-        #chromephp:
-        #    type:   chromephp
-        #    level:  info
 
-#swiftmailer:
-#    delivery_addresses: ['me@example.com']
+nelmio_api_doc:
+    name: Exchange calculator
+    default_sections_opened: false
+    sandbox:
+        enabled: true
+        body_format:
+            formats:
+                - json
+        request_format:
+            formats:
+                json: application/json
+            method: accept_header
+        authentication:
+            delivery: header
+            name: Authorization
+            type: bearer
