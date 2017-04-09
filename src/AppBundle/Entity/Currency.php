@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Mell\Bundle\SimpleDtoBundle\Model\DtoSerializableInterface;
 
 /**
@@ -16,16 +17,29 @@ class Currency implements DtoSerializableInterface
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     * @Assert\Length(max = 255)
+     *
      * @var string
      */
     private $code;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("numeric")
+     * @Assert\Length(max = 255)
+     * @Assert\GreaterThan(0)
+     *
      * @var float
      */
     private $value;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     * @Assert\Length(max = 255)
+     *
      * @var string
      */
     private $country;
