@@ -8,7 +8,9 @@ use AppBundle\Entity\Currency;
 use AppBundle\Entity\ExchangeRequest;
 use AppBundle\Entity\ExchangeResult;
 use Mell\Bundle\SimpleDtoBundle\Controller\AbstractController;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,16 +31,40 @@ class ExchangeController extends AbstractController
      * @Method({"POST"})
      * @param Request $request
      * @return Response
-     * @ApiDoc(
-     *     statusCodes={
-     *         200="Return when operation success",
-     *         403="Return when issuer had no permission for operation"
-     *     },
-     *     resource=true,
-     *     section="Exchange",
-     *     description="Exchange",
-     *     input={ "class"="AppBundle\Entity\ExchangeRequest", "groups"="create" }
+     * @Operation(
+     *     tags={"Exchange"},
+     *     summary="Exchange",
+     *     @SWG\Parameter(
+     *         name="currencyFromId",
+     *         in="formData",
+     *         description="Source corrency identifier",
+     *         required=false,
+     *         type="integer"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="currencyToId",
+     *         in="formData",
+     *         description="Target corrency identifier",
+     *         required=false,
+     *         type="integer"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="amount",
+     *         in="formData",
+     *         description="Amount",
+     *         required=false,
+     *         type="number"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Return when operation success"
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="Return when issuer had no permission for operation"
+     *     )
      * )
+     *
      */
     public function indexAction(Request $request): Response
     {

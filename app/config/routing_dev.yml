@@ -13,6 +13,12 @@ _errors:
 _main:
     resource: routing.yml
 
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/v1/doc
+_swagger_ui:
+    path: /api/v1/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+_swagger_schema:
+    path: /swagger.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }

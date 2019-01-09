@@ -23,18 +23,20 @@ monolog:
             channels: [!event, !doctrine]
 
 nelmio_api_doc:
-    name: Exchange calculator
-    default_sections_opened: false
-    sandbox:
-        enabled: true
-        body_format:
-            formats:
-                - json
-        request_format:
-            formats:
-                json: application/json
-            method: accept_header
-        authentication:
-            delivery: header
-            name: Authorization
-            type: bearer
+    models: { use_jms: false }
+    routes:
+        path_patterns:
+            - ^/api/v1/(?!doc)
+    documentation:
+        info:
+            title: Currency Exchange
+            description: API description goes here
+            version: 0.1
+        securityDefinitions:
+            api_key:
+                type: apiKey
+                description: Your Web Token
+                name:  authorization
+                in: header
+        security:
+            - api_key: []

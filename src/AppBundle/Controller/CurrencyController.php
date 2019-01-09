@@ -6,10 +6,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Currency;
 use Mell\Bundle\SimpleDtoBundle\Controller\AbstractController;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Swagger\Annotations as SWG;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,23 +32,53 @@ class CurrencyController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @return Response
      * @Route("/")
      * @Method({"POST"})
-     * @ApiDoc(
-     *     statusCodes={
-     *         200="Return when operation success",
-     *         400="Return when bad request format",
-     *         403="Return when issuer had no permission for operation",
-     *         422="Return when validation errors"
-     *     },
-     *     resource=true,
-     *     section="Currency",
-     *     description="Create resource",
-     *     input={ "class"="AppBundle\Entity\Currency", "groups"="create"},
-     *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
-     * ),
+     * @param Request $request
+     * @return Response
+     * @Operation(
+     *     tags={"Currency"},
+     *     summary="Create new currency",
+     *     @SWG\Parameter(
+     *         name="code",
+     *         in="formData",
+     *         description="Code",
+     *         required=false,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="country",
+     *         in="formData",
+     *         description="Related country",
+     *         required=false,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="value",
+     *         in="formData",
+     *         description="Currency weight",
+     *         required=false,
+     *         type="number"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Return when operation success",
+     *         @Model(type=AppBundle\Entity\Currency::class)
+     *     ),
+     *     @SWG\Response(
+     *         response="400",
+     *         description="Return when bad request format"
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="Return when issuer had no permission for operation"
+     *     ),
+     *     @SWG\Response(
+     *         response="422",
+     *         description="Return when validation errors"
+     *     )
+     * )
+     *,
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request): Response
@@ -60,20 +92,38 @@ class CurrencyController extends AbstractController
     }
 
     /**
+     * @Route("/{id}")
+     * @Method({"GET"})
      * @param Currency $currency
      * @return Response
-     * @Route("/{id}", requirements={"id" = "\d+"})
-     * @Method({"GET"})
-     * @ApiDoc(
-     *     statusCodes={
-     *         200="Return when operation success",
-     *         403="Return when issuer had no permission for operation"
-     *     },
-     *     resource=true,
-     *     section="Currency",
-     *     description="Read resource",
-     *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
-     * ),
+     * @Operation(
+     *     tags={"Currency"},
+     *     summary="Read currency data",
+     *     @SWG\Parameter(
+     *         name="_fields",
+     *         in="query",
+     *         description="Required fields",
+     *         required=false,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="_expands",
+     *         in="query",
+     *         description="Required expands",
+     *         required=false,
+     *         type="string"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Return when operation success",
+     *         @Model(type=AppBundle\Entity\Currency::class)
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="Return when issuer had no permission for operation"
+     *     )
+     * )
+     *,
      * @Security("has_role('ROLE_USER')")
      */
     public function readAction(Currency $currency): Response
@@ -82,19 +132,23 @@ class CurrencyController extends AbstractController
     }
 
     /**
+     * @Route("/{id}")
+     * @Method({"DELETE"})
      * @param Currency $currency
      * @return Response
-     * @Route("/{id}", requirements={"id" = "\d+"})
-     * @Method({"DELETE"})
-     * @ApiDoc(
-     *     statusCodes={
-     *         200="Return when operation success",
-     *         403="Return when issuer had no permission for operation"
-     *     },
-     *     resource=true,
-     *     section="Currency",
-     *     description="Delete resource"
-     * ),
+     * @Operation(
+     *     tags={"Currency"},
+     *     summary="Delete currency",
+     *     @SWG\Response(
+     *         response="204",
+     *         description="Return when operation success"
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="Return when issuer had no permission for operation"
+     *     )
+     * )
+     *,
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Currency $currency): Response
@@ -106,18 +160,21 @@ class CurrencyController extends AbstractController
 
 
     /**
-     * @return Response
      * @Route("/")
      * @Method({"GET"})
-     * @ApiDoc(
-     *     statusCodes={
-     *         200="Return when operation success",
-     *         403="Return when issuer had no permission for operation"
-     *     },
-     *     resource=true,
-     *     section="Currency",
-     *     description="List resources",
-     *     output={ "class"="AppBundle\Entity\Currency", "groups"="read"}
+     * @return Response
+     * @Operation(
+     *     tags={"Currency"},
+     *     summary="List currencies collection",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Return when operation success",
+     *         @Model(type=AppBundle\Entity\Currency::class)
+     *     ),
+     *     @SWG\Response(
+     *         response="403",
+     *         description="Return when issuer had no permission for operation"
+     *     )
      * ),
      * @Security("has_role('ROLE_USER')")
      */

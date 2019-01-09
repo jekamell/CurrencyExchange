@@ -1,7 +1,7 @@
 security:
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)|(api/v1/doc)
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)|(api/v1/doc)|(/swagger.json)
             security: false
         app:
             stateless: true
