@@ -40,30 +40,15 @@ class CurrencyController extends AbstractController
      *     tags={"Currency"},
      *     summary="Create new currency",
      *     @SWG\Parameter(
-     *         name="code",
-     *         in="formData",
-     *         description="Code",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="country",
-     *         in="formData",
-     *         description="Related country",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         name="value",
-     *         in="formData",
-     *         description="Currency weight",
-     *         required=false,
-     *         type="number"
+     *         name="body",
+     *         in="body",
+     *         required=true,
+     *         @Model(type=Currency::class)
      *     ),
      *     @SWG\Response(
      *         response="200",
      *         description="Return when operation success",
-     *         @Model(type=AppBundle\Entity\Currency::class)
+     *         @Model(type=AppBundle\Entity\Currency::class, groups={"create"})
      *     ),
      *     @SWG\Response(
      *         response="400",
