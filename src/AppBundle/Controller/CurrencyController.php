@@ -42,13 +42,14 @@ class CurrencyController extends AbstractController
      *     @SWG\Parameter(
      *         name="body",
      *         in="body",
+     *         description="Request payload",
      *         required=true,
-     *         @Model(type=Currency::class)
+     *         @Model(type=Currency::class, groups={"create"})
      *     ),
      *     @SWG\Response(
      *         response="200",
      *         description="Return when operation success",
-     *         @Model(type=AppBundle\Entity\Currency::class, groups={"create"})
+     *         @Model(type=AppBundle\Entity\Currency::class, groups={"read"})
      *     ),
      *     @SWG\Response(
      *         response="400",
