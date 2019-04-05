@@ -14,4 +14,6 @@ QA Test
 - There are few endpoints groups in the system: **Currency** (currency management in [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) style), **Exchange** (with only one endpoint: __POST__[/api/v1/exchange/]())
 - Only user with administration access should have access to __POST__[/api/v1/currencies/]() and __DELETE__[/api/v1/currencies/{id}]()
 - The calculation in __POST__[/api/v1/exchange/]() uses formula: request.amount * currencyFrom.value / currencyTo.value
- 
+- Write tests using the BDD approach with JS (choose a library at its discretion)(remember that it is a Tester position)
+- Write any comments, assumptions as deemed necessary
+- Optionally, you can include a brief explanation of your solution. 
